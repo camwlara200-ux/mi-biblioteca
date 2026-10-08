@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Biblioteca</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>📚 Mi Biblioteca</h1>
+    <span id="conn-status" class="status">conectando…</span>
+  </header>
+
+  <main class="layout">
+
+    <!-- FORMULARIO -->
+    <section class="panel">
+      <h2>Registrar / Editar libro</h2>
+      <form id="form-libro" novalidate>
+        <input type="hidden" id="f-id">
+
+        <label for="f-titulo">Título *</label>
+        <input type="text" id="f-titulo" placeholder="Don Quijote">
+        <small class="error" id="err-titulo"></small>
+
+        <label for="f-autor">Autor *</label>
+        <input type="text" id="f-autor" placeholder="Cervantes">
+        <small class="error" id="err-autor"></small>
+
+        <label for="f-genero">Género *</label>
+        <select id="f-genero">
+          <option value="">Seleccionar…</option>
+          <option>Novela</option>
+          <option>Cuento</option>
+          <option>Ciencia ficción</option>
+          <option>Historia</option>
+          <option>Técnico</option>
+          <option>Otro</option>
+        </select>
+        <small class="error" id="err-genero"></small>
+
+        <label for="f-paginas">Páginas *</label>
+        <input type="number" id="f-paginas" min="1" placeholder="300">
+        <small class="error" id="err-paginas"></small>
+
+        <label for="f-estado">Estado *</label>
+        <select id="f-estado">
+          <option value="">Seleccionar…</option>
+          <option>Pendiente</option>
+          <option>Leyendo</option>
+          <option>Leído</option>
+        </select>
+        <small class="error" id="err-estado"></small>
+
+        <label for="f-notas">Notas</label>
+        <textarea id="f-notas" rows="2" placeholder="Opcional"></textarea>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" id="btn-submit">Guardar libro</button>
+          <button type="button" class="btn btn-ghost" id="btn-cancelar" hidden>Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- LISTADO -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Libros registrados</h2>
+        <span class="badge" id="contador">0</span>
+      </div>
+
+      <div class="toolbar">
+        <input type="search" id="f-buscar" placeholder="Buscar por título o autor…">
+        <select id="f-filtro-genero">
+          <option value="">Todos los géneros</option>
+          <option>Novela</option>
+          <option>Cuento</option>
+          <option>Ciencia ficción</option>
+          <option>Historia</option>
+          <option>Técnico</option>
+          <option>Otro</option>
+        </select>
+        <select id="f-filtro-estado">
+          <option value="">Todos los estados</option>
+          <option>Pendiente</option>
+          <option>Leyendo</option>
+          <option>Leído</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Título</th><th>Autor</th><th>Género</th><th>Págs.</th><th>Estado</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="tabla-body">
+            <tr><td colspan="6" class="vacio">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL CONFIRMAR ELIMINAR -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card">
+      <h3>¿Eliminar este libro?</h3>
+      <p id="modal-texto"></p>
+      <div class="actions">
+        <button class="btn btn-ghost" id="modal-cancelar">Cancelar</button>
+        <button class="btn btn-danger" id="modal-ok">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* Cambiá estos colores para cambiar todo el estilo de la página */
+:root {
+  --bg: #0f1a1f;
+  --panel: #16252c;
+  --panel-2: #1d313a;
+  --line: #2a424d;
+  --text: #eaf2f4;
+  --muted: #9bb4bd;
+  --accent: #2fb5a5;      /* color principal (botones, detalles) */
+  --accent-dark: #218a7d;
+  --danger: #c0443f;
+  --ok: #4c9a6a;
+  --warn: #d68d2e;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, Arial, sans-serif; font-size: 15px; }
+
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; background: var(--panel); border-bottom: 3px solid var(--accent); }
+.topbar h1 { margin: 0; font-size: 20px; }
+.status { font-size: 13px; color: var(--muted); }
+
+.layout { display: grid; grid-template-columns: 330px 1fr; gap: 20px; padding: 24px 28px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+.panel h2 { margin: 0 0 14px; font-size: 17px; }
+.panel-head { display: flex; justify-content: space-between; align-items: center; }
+.panel-head h2 { margin-bottom: 0; }
+.badge { background: var(--panel-2); border: 1px solid var(--line); padding: 3px 10px; border-radius: 20px; font-size: 13px; color: var(--muted); }
+
+label { display: block; margin: 12px 0 4px; font-size: 13px; color: var(--muted); }
+input, select, textarea { width: 100%; padding: 9px 10px; background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font-size: 14px; font-family: inherit; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+.invalid { border-color: var(--danger) !important; }
+.error { color: #ff8b85; font-size: 12px; min-height: 14px; display: block; }
+
+.actions { display: flex; gap: 10px; margin-top: 16px; }
+.btn { padding: 9px 16px; border: 1px solid transparent; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.btn-primary { background: var(--accent); color: #05221f; font-weight: 600; }
+.btn-primary:hover { background: var(--accent-dark); color: #fff; }
+.btn-ghost { background: transparent; border-color: var(--line); color: var(--text); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-sm { padding: 4px 10px; font-size: 12px; background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 5px; cursor: pointer; }
+.btn-sm:hover { color: var(--text); border-color: var(--accent); }
+
+.toolbar { display: grid; grid-template-columns: 1fr 180px 170px; gap: 10px; margin: 14px 0; }
+@media (max-width: 700px) { .toolbar { grid-template-columns: 1fr; } }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; min-width: 600px; }
+th { text-align: left; font-size: 12px; text-transform: uppercase; color: var(--muted); background: var(--panel-2); padding: 10px 12px; border-bottom: 2px solid var(--accent); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+.vacio { text-align: center; color: var(--muted); padding: 24px; }
+td.acc { display: flex; gap: 6px; }
+
+.pill { font-size: 12px; padding: 2px 9px; border-radius: 20px; border: 1px solid currentColor; }
+.pill-pendiente { color: var(--warn); }
+.pill-leyendo { color: var(--accent); }
+.pill-leido { color: var(--ok); }
+
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.modal[hidden] { display: none; }
+.modal-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px; width: min(360px, 90vw); }
+.modal-card h3 { margin: 0 0 8px; }
+.modal-card p { color: var(--muted); }
+.modal-card .actions { justify-content: flex-end; }
+
+.toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border-left: 4px solid var(--ok); padding: 12px 18px; border-radius: 6px; z-index: 60; }
+.toast[hidden] { display: none; }
+.toast.err { border-left-color: var(--danger); }
